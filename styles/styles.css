@@ -1,0 +1,16 @@
+li {
+  text-decoration: none;
+  list-style: none;
+  overflow-y: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100vw;
+  overflow-x: visible;
+  transform: scaleY(1.1);
+  align-items: center;
+}

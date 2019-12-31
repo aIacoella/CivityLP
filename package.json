@@ -1,0 +1,24 @@
+{
+  "name": "CivityLP",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "next": "^9.1.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.1",
+    "@types/react": "^16.9.17",
+    "nodemon": "^2.0.2",
+    "typescript": "^3.7.4"
+  }
+}
