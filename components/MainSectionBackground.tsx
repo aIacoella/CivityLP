@@ -24,10 +24,10 @@ export default function MainSectionBackground() {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(1440 -58.5002) rotate(146.795) scale(1721.02 2803.47)"
           >
-            <stop stop-color="#1EA67E" />
-            <stop offset="0.828552" stop-color="#1EA67E" />
-            <stop offset="0.902829" stop-color="#198472" />
-            <stop offset="1" stop-color="#114B5F" />
+            <stop stopColor="#1EA67E" />
+            <stop offset="0.828552" stopColor="#1EA67E" />
+            <stop offset="0.902829" stopColor="#198472" />
+            <stop offset="1" stopColor="#114B5F" />
           </radialGradient>
         </defs>
       </svg>

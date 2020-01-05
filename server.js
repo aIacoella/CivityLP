@@ -1,23 +1,40 @@
 const express = require("express");
 const next = require("next");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const nextApp = next({ dev });
+const handle = nextApp.getRequestHandler();
 
-app
+nextApp
   .prepare()
   .then(() => {
-    const server = express();
+    const app = express();
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
 
-    server.get("*", (req, res) => {
+    app.use("/api", require("./api/users-api"));
+
+    app.get("*", (req, res) => {
       return handle(req, res);
     });
 
-    server.listen(3000, err => {
-      if (err) throw err;
-      console.log("> Ready on http://localhost:3000");
-    });
+    mongoose.connection.on("error", err => console.warn(err));
+
+    mongoose.connect(
+      "mongodb://localhost:27017/civitylp",
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      res => {
+        console.log("Connected to " + 3000);
+        if (!res) {
+          app.listen(3000, err => {
+            if (err) throw err;
+            console.log("> Ready on http://localhost:3000");
+          });
+        }
+      }
+    );
   })
   .catch(ex => {
     console.error(ex.stack);
