@@ -3,7 +3,7 @@ import React from "react";
 export default function Logo() {
   return (
     <div className="logo">
-      <img src="/media/CivityLogo.svg" alt="Logo" />
+      <img src="media/CivityLogo.svg" alt="Logo" />
       <span>Civity</span>
       <style>
         {`

@@ -1,9 +1,14 @@
+require("dotenv").config();
+
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const dev = process.env.NODE_ENV !== "production";
+const port = process.env.PORT || 3000;
+const db_url = process.env.DB_URL || "mongodb://localhost:27017/civitylp";
+
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 
@@ -23,14 +28,14 @@ nextApp
     mongoose.connection.on("error", err => console.warn(err));
 
     mongoose.connect(
-      "mongodb://localhost:27017/civitylp",
+      db_url,
       { useNewUrlParser: true, useUnifiedTopology: true },
       res => {
-        console.log("Connected to " + 3000);
+        console.log("Connected to db");
         if (!res) {
-          app.listen(3000, err => {
+          app.listen(port, err => {
             if (err) throw err;
-            console.log("> Ready on http://localhost:3000");
+            console.log("> Ready on http://localhost:" + port);
           });
         }
       }

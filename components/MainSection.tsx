@@ -10,7 +10,7 @@ export default function MainSection() {
         <MainSectionBackground />
         <div className="content">
           <div className="content-container picture left-pic">
-            <img src="/media/searchItem.png" alt="Search your books" />
+            <img src="media/searchItem.png" alt="Search your books" />
           </div>
           <div className="content-container info">
             <h1 id="catch-phrase">
@@ -29,7 +29,7 @@ export default function MainSection() {
                   ENTRA IN CIVITY
                 </Button>
               </div>
-              <img src="/media/searchItem.png" alt="Search your books" />
+              <img src="media/searchItem.png" alt="Search your books" />
             </div>
             <div className="standalone-cta">
               <Button

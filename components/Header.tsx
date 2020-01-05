@@ -24,7 +24,7 @@ export default function Header({ state }: { state: string }) {
   return (
     <div className="header-container">
       <div className="logo-header">
-        <img src="/media/CivityLogo.svg" alt="Logo" />
+        <img src="media/CivityLogo.svg" alt="Logo" />
         <span>Civity</span>
       </div>
       <div className="links-container">

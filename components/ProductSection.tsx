@@ -12,14 +12,14 @@ export default function ProductSection() {
             nostra chat, accordati sul pagamento, tutto dalla stessa
             applicazione
           </h4>
-          <img src="/media/buy-pic.png" alt="Compra" />
+          <img src="media/buy-pic.png" alt="Compra" />
         </div>
         <div className="divider"></div>
         <div className="col">
           <h3>Vendi</h3>
           <div className="sell-content">
             <img
-              src="/media/selling-time.png"
+              src="media/selling-time.png"
               alt="Vendi"
               style={{ marginBottom: 8 }}
             />
