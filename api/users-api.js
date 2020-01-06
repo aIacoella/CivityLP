@@ -18,7 +18,6 @@ router.post("/users", async (req, res) => {
   try {
     const email = req.body.email;
     const userInDb = await Users.find({ email }).exec();
-    console.log(userInDb);
     const user = new Users({
       email: req.body.email,
       type: req.body.isSchool ? "SC" : "UN"
@@ -44,7 +43,7 @@ router.post("/users", async (req, res) => {
           console.log("Email sent: " + info.response);
         }
       });
-      console.log(process.env.EMAIL_PWD);
+      console.log("User ++");
       res.send("All good");
     }
   } catch (err) {
