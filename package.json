@@ -18,8 +18,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "next start",
-    "export": "next export"
+    "start": "node server.js"
   },
   "devDependencies": {
     "@types/node": "^13.1.1",
