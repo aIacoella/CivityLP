@@ -111,11 +111,13 @@ export default function MainSection() {
               .content-container {
                 flex-direction: column;
                 justify-content: flex-start;
-                padding-top: 100px;
                 align-items: center;
               }
               .content-container.info {
                 align-items: center;
+                padding: 0 10px;
+                padding-top: 60px;
+                text-align: center;
               }
               .left-pic {
                 display: none;

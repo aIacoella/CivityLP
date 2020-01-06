@@ -13,5 +13,6 @@ li {
   transform: scaleY(1.1);
   align-items: center;
   border: solid 1px #cc4c4c;
-
+  text-transform: uppercase;
+  
 }

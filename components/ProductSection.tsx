@@ -12,7 +12,11 @@ export default function ProductSection() {
             nostra chat, accordati sul pagamento, tutto dalla stessa
             applicazione
           </h4>
-          <img src="media/buy-pic.png" alt="Compra" />
+          <img
+            src="media/buy-pic.png"
+            alt="Compra"
+            style={{ marginTop: "25px" }}
+          />
         </div>
         <div className="divider"></div>
         <div className="col">
@@ -77,6 +81,12 @@ export default function ProductSection() {
               .divider {
                 width: auto;
                 height: 2px;
+              }
+              .col {
+                margin: 40px 15px;
+              }
+              .sell-content {
+                flex-direction: column;
               }
             }
           `}

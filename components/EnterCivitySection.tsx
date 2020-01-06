@@ -8,13 +8,28 @@ import ScrollableAnchor from "react-scrollable-anchor";
 export default function EnterCivitySection() {
   const [isSchool, setIsSchool] = useState(false);
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [completed, setCompleted] = useState(false);
 
   const enterCivity = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setCompleted(false);
     e.preventDefault();
-    axios
-      .post("/api/users", { isSchool, email })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    if (validateEmail(email)) {
+      setError("");
+      axios
+        .post("/api/users", { isSchool, email })
+        .then(res => {
+          console.log(res);
+          setCompleted(true);
+        })
+        .catch(err => {
+          if (err.response.status === 400)
+            setError("L'email inserita sembra essere già stata utilizzata");
+          else setError("Ops... qualcosa è andato storto. Riprova più tardi");
+        });
+    } else {
+      setError("L'email inserita non sembra essere valida");
+    }
   };
 
   return (
@@ -22,6 +37,17 @@ export default function EnterCivitySection() {
       <div className="enter-section-container">
         <div className="side"></div>
         <form className="content">
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ margin: "20px 0" }}>Come posso iniziare?</h2>
+            <h4>
+              Al momento stiamo ultimando gli ultimi ritocchi per rendere la tua
+              esperienza fantastica. Intanto però puoi entrare da subito a far
+              parte della comunità di Civity lasciando qui la tua email.
+            </h4>
+          </div>
+          <h4 style={{ margin: "30px 0" }}>
+            <b>Cosa aspetti?</b>
+          </h4>
           <div className="title">
             <h3>Entra in </h3>
             <Logo />
@@ -49,13 +75,25 @@ export default function EnterCivitySection() {
             </Selectable>
           </div>
           <div className="h-divider"></div>
-          <Button style={{ marginTop: 20 }} onClick={enterCivity}>
+          <h5
+            id="error-message"
+            style={{ color: completed ? "#1ea67e" : "#b00020" }}
+          >
+            {completed ? "Benvenuto in Civity" : error}
+          </h5>
+          <Button style={{ marginTop: 15 }} onClick={enterCivity}>
             ENTRA IN CIVITY
           </Button>
         </form>
         <div className="side"></div>
         <style jsx>
           {`
+            #error-message {
+              text-align: center;
+              font-family: "Montserrat", sans-serif;
+              font-size: 14px;
+              margin: 10px 0;
+            }
             .enter-section-container {
               position: relative;
               display: flex;
@@ -66,11 +104,12 @@ export default function EnterCivitySection() {
               flex: 1;
             }
             .content {
-              flex: 1;
+              flex: 2;
               display: flex;
               flex-direction: column;
               align-items: center;
-              max-width: 500px;
+              max-width: 700px;
+              min-width: 300px;
             }
             .title {
               display: flex;
@@ -82,21 +121,7 @@ export default function EnterCivitySection() {
               font-weight: bold;
               color: #114b5f;
             }
-            .logo {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              padding: 14px;
-              background-color: #1ea67e;
-              border-radius: 999px;
-              margin-left: 14px;
-            }
-            .logo span {
-              color: white;
-              font-size: 30px;
-              padding: 0 20px 0 10px;
-              letter-spacing: 0.1em;
-            }
+
             form {
               display: flex;
               flex-direction: column;
@@ -107,6 +132,7 @@ export default function EnterCivitySection() {
               display: flex;
               flex-direction: column;
               margin-top: 15px;
+              max-width: 500px;
             }
             label {
               font-family: "Montserrat", sans-serif;
@@ -137,9 +163,23 @@ export default function EnterCivitySection() {
               margin-top: 20px;
               display: flex;
             }
+
+            @media only screen and (max-width: 1200px) {
+              .enter-section-container {
+                margin: 70px 0;
+              }
+              .title > h3 {
+                font-size: 25px;
+              }
+            }
           `}
         </style>
       </div>
     </ScrollableAnchor>
   );
+}
+
+function validateEmail(email: string) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }

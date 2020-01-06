@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
 export default function Header({ state }: { state: string }) {
   const [rendered, setRendered] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     setRendered(true);
@@ -22,41 +23,56 @@ export default function Header({ state }: { state: string }) {
     : { offset: 0, width: 0 };
 
   return (
-    <div className="header-container">
-      <div className="logo-header">
-        <img src="media/CivityLogo.svg" alt="Logo" />
-        <span>Civity</span>
+    <Fragment>
+      <div className="header-container standard-header">
+        <div className="logo-header">
+          <img src="media/CivityLogo.svg" alt="Logo" />
+          <span>Civity</span>
+        </div>
+        <div className="links-container">
+          <div className="v-spacer" />
+          <div className="header-links">
+            <li id="#home">
+              <a href="#home">Home</a>
+            </li>
+            <li id="#libri">
+              <a href="#libri">Libri</a>
+            </li>
+            <li id="#come-funziona">
+              <a href="#come-funziona">Come funziona?</a>
+            </li>
+            <div className="h-spacer" />
+            <li id="#entra">
+              <a className="cta-text" href="#entra">
+                Entra in Civity
+              </a>
+            </li>
+          </div>
+          <div className="v-spacer">
+            {rendered && (
+              <div
+                className="header-underline"
+                style={{
+                  transform: `translateX(${offset +
+                    width / 2}px) scaleX(${width})`
+                }}
+              />
+            )}
+          </div>
+        </div>
       </div>
-      <div className="links-container">
+      <div className="header-container mobile-header">
+        <div className="logo-header">
+          <img src="media/CivityLogo.svg" alt="Logo" />
+          <span>Civity</span>
+        </div>
         <div className="v-spacer" />
-        <div className="header-links">
-          <li id="#home">
-            <a href="#home">Home</a>
-          </li>
-          <li id="#libri">
-            <a href="#libri">Libri</a>
-          </li>
-          <li id="#come-funziona">
-            <a href="#come-funziona">Come funziona?</a>
-          </li>
-          <div className="h-spacer" />
-          <li id="#entra">
-            <a className="cta-text" href="#entra">
-              Entra in Civity
-            </a>
-          </li>
-        </div>
-        <div className="v-spacer">
-          {rendered && (
-            <div
-              className="header-underline"
-              style={{
-                transform: `translateX(${offset +
-                  width / 2}px) scaleX(${width})`
-              }}
-            />
-          )}
-        </div>
+        <img
+          style={{ padding: "0 20px", height: 30 }}
+          src="media/menu.svg"
+          alt="Menu"
+          onClick={() => setIsDrawerOpen(true)}
+        />
       </div>
       <style jsx>{`
         .v-spacer {
@@ -135,7 +151,98 @@ export default function Header({ state }: { state: string }) {
           color: #114b5f;
           font-weight: bold;
         }
+        .mobile-header {
+          display: none;
+        }
+        .drawer-container {
+          display: none;
+          position: fixed;
+          pointer-events: none;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0);
+          z-index: 100;
+          transition: 0.3s;
+        }
+        .drawer {
+          transform: translateX(100vw);
+          margin: 0;
+          padding: 20px 10px;
+          transition: 0.3s;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100vw;
+          background-color: #1ea67e;
+          display: flex;
+          flex-direction: column;
+        }
+        #exit-btn {
+          width: 24px;
+          padding: 18px;
+          opacity: 0;
+          transition: 0.3s;
+        }
+        .drawer-container.open {
+          background-color: rgba(0, 0, 0, 0.8);
+          pointer-events: inherit;
+        }
+        .drawer-container.open > .drawer {
+          transform: translateX(60px);
+        }
+        .drawer-container.open > #exit-btn {
+          opacity: 1;
+        }
+        .drawer > a {
+          padding: 20px 15px;
+          color: white;
+          font-size: 17px;
+          font-family: "Montserrat", sans-serif;
+          text-transform: uppercase;
+        }
+        .cta-text-mobile {
+          font-weight: bold;
+        }
+        @media only screen and (max-width: 800px) {
+          .standard-header {
+            display: none;
+          }
+          .mobile-header {
+            display: flex;
+          }
+          .drawer-container {
+            display: block;
+          }
+        }
       `}</style>
-    </div>
+      <div className={"drawer-container " + (isDrawerOpen ? "open" : "closed")}>
+        <img
+          src="media/exit.svg"
+          alt="Exit"
+          id="exit-btn"
+          onClick={() => setIsDrawerOpen(false)}
+        />
+        <div className="drawer">
+          <a href="#home" onClick={() => setIsDrawerOpen(false)}>
+            Home
+          </a>
+          <a href="#libri" onClick={() => setIsDrawerOpen(false)}>
+            Libri
+          </a>
+          <a href="#come-funziona" onClick={() => setIsDrawerOpen(false)}>
+            Come funziona?
+          </a>
+          <a
+            className="cta-text-mobile"
+            href="#entra"
+            onClick={() => setIsDrawerOpen(false)}
+          >
+            Entra in Civity
+          </a>
+        </div>
+      </div>
+    </Fragment>
   );
 }

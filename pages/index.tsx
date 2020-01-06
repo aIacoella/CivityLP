@@ -80,6 +80,28 @@ const Index = () => {
           a {
             text-decoration: none;
           }
+          img {
+            max-width: 100%;
+          }
+          @media only screen and (max-width: 800px) {
+            h1 {
+              font-size: 40px;
+              line-height: 40px;
+            }
+            h2 {
+              font-size: 30px;
+              line-height: 30px;
+            }
+            h3 {
+              font-size: 20px;
+              font-weight: 300;
+              line-height: 20px;
+            }
+            h4 {
+              font-size: 18px;
+              font-weight: 300;
+              line-height: 20px;
+            }
         `}
       </style>
     </React.Fragment>

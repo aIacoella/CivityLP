@@ -69,6 +69,9 @@ export default function BookSection() {
             }
             #cost-book-center {
               display: none;
+              align-self: center;
+              max-width: calc(100% - 20px);
+              margin-bottom: 50px;
             }
             .red {
               font-weight: bold;
@@ -83,6 +86,12 @@ export default function BookSection() {
               }
               .info-container {
                 margin-bottom: 50px;
+              }
+            }
+            @media only screen and (max-width: 800px) {
+              .info-container {
+                margin-left: 15px;
+                margin-right: 15px;
               }
             }
           `}
@@ -103,8 +112,7 @@ function BookStoreRun() {
           .book-store-canvas {
             display: flex;
             flex-direction: row;
-            margin-left: 50px;
-            margin-top: 50px;
+            overflow: hidden;
           }
         `}
       </style>
