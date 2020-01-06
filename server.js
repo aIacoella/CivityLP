@@ -27,9 +27,20 @@ nextApp
 
     mongoose.connection.on("error", err => console.warn(err));
 
+    const auth = process.env.DB_USER
+      ? {
+          user: process.env.DB_USER,
+          password: process.env.DB_PWD
+        }
+      : undefined;
+
     mongoose.connect(
       db_url,
-      { useNewUrlParser: true, useUnifiedTopology: true },
+      {
+        auth,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      },
       res => {
         console.log("Connected to db");
         if (!res) {
