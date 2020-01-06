@@ -19,7 +19,6 @@ export default function EnterCivitySection() {
       axios
         .post("/api/users", { isSchool, email })
         .then(res => {
-          console.log(res);
           setCompleted(true);
         })
         .catch(err => {

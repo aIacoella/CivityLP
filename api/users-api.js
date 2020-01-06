@@ -36,13 +36,13 @@ router.post("/users", async (req, res) => {
         subject: "New User ",
         text: "Email: " + email + "\nType: " + (req.body.isSchool ? "SC" : "UN")
       };
-      transporter.sendMail(mailOptions, function(error, info) {
+      /*transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
           console.log(error);
         } else {
           console.log("Email sent: " + info.response);
         }
-      });
+      });*/
       console.log("User ++");
       res.send("All good");
     }
