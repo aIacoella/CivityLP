@@ -46,6 +46,7 @@ const Index = () => {
           name="apple-mobile-web-app-status-bar-style"
           content="#1EA67E"
         />
+        <link key="f" rel="icon" href="media/logo.png" />
       </Head>
       <Header state={navState} />
       <MainSection />
