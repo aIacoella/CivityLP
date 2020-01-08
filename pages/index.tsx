@@ -33,8 +33,19 @@ const Index = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Civity</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title key="a">Civity</title>
+        <meta
+          key="b"
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+        />
+        <meta key="c" name="theme-color" content="#1EA67E" />
+        <meta key="d" name="msapplication-navbutton-color" content="#1EA67E" />
+        <meta
+          key="e"
+          name="apple-mobile-web-app-status-bar-style"
+          content="#1EA67E"
+        />
       </Head>
       <Header state={navState} />
       <MainSection />

@@ -36,9 +36,27 @@ export default function EnterCivitySection() {
       <div className="enter-section-container">
         <div className="side"></div>
         <form className="content">
-          <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column"
+            }}
+          >
             <h2 style={{ margin: "20px 0" }}>Come posso iniziare?</h2>
-            <h4>
+            <h4
+              style={{ margin: "10px 0", color: "#0000ee", fontWeight: "bold" }}
+            >
+              <a
+                className="std-link"
+                href="https://forms.gle/TgR4j9Wus5zB7P82A"
+                target="_blank"
+              >
+                Vuoi avere accesso anticipato a Civity?
+              </a>
+            </h4>
+            <div className="h-divider" style={{ alignSelf: "center" }}></div>
+            <h4 style={{ marginTop: "20px" }}>
               Al momento stiamo ultimando gli ultimi ritocchi per rendere la tua
               esperienza fantastica. Intanto però puoi entrare da subito a far
               parte della comunità di Civity lasciando qui la tua email.
@@ -161,6 +179,16 @@ export default function EnterCivitySection() {
             .selectable-container {
               margin-top: 20px;
               display: flex;
+            }
+
+            .std-link {
+              color: #0000ee;
+              text-decoration: underline;
+              cursor: auto;
+              font-size: 18px;
+            }
+            .std-link:hover {
+              cursor: pointer;
             }
 
             @media only screen and (max-width: 1200px) {
